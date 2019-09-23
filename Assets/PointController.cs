@@ -7,6 +7,17 @@ public class PointController : MonoBehaviour {
 	private GameObject pointtext;
 	//得点の変数宣言
 	public int score = 0;
+
+	// Use this for initialization
+	void Start () {
+		//シーン中のPointTextオブジェクトを取得
+		this.pointtext = GameObject.Find("PointText");
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 	//衝突時に呼ばれる関数
 	void OnCollisionEnter(Collision col){
 		//得点をオブジェクトに応じて入れる。
@@ -16,18 +27,9 @@ public class PointController : MonoBehaviour {
 			score += 20;
 		} else if (col.gameObject.tag == "LargeCloudTag") {
 			score += 30;
-		} else if (col.gameObject.tag == "SmallCloudTag"){
+		} else if (col.gameObject.tag == "SmallCloudTag") {
 			score += 40;
-			}
-	}
-	// Use this for initialization
-	void Start () {
-		//シーン中のPointTextオブジェクトを取得
-		this.pointtext = GameObject.Find("PointText");
-	}
-	
-	// Update is called once per frame
-	void Update () {
+		}
 		//オブジェクトからTextコンポーネントを取得
 		this.pointtext.GetComponent<Text> ().text = ("Score : " + score);
 	}
